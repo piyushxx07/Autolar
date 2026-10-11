@@ -39,7 +39,7 @@ const DeviceControl = () => {
               <p>Reported mode: <strong>{loading && !mode ? 'Loading…' : currentMode || 'Not reported by API'}</strong></p>
               <p className="text-muted">Choose whether the tracker follows the sun or stays fixed. The backend confirms the command after it is sent.</p>
               <div className="d-flex gap-2 flex-wrap">
-                <Button variant={currentMode === 'TRACKING' ? 'success' : 'outline-success'} disabled={saving} onClick={() => setDeviceMode('TRACKING')}>
+                <Button variant={['TRACK', 'TRACKING'].includes(currentMode) ? 'success' : 'outline-success'} disabled={saving} onClick={() => setDeviceMode('TRACKING')}>
                   {saving ? <Spinner size="sm" className="me-2" /> : null}Set to Tracking
                 </Button>
                 <Button variant={currentMode === 'STATIC' ? 'primary' : 'outline-primary'} disabled={saving} onClick={() => setDeviceMode('STATIC')}>

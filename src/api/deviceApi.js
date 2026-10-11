@@ -17,7 +17,9 @@ const deviceApi = {
   getRecommendation: (deviceId) => {
     return axiosClient.get(`/devices/${deviceId}/recommendation`);
   },
-  setMode: (deviceId, mode) => axiosClient.post(`/devices/${deviceId}/mode`, { mode }),
+  setMode: (deviceId, mode) => axiosClient.post(`/devices/${deviceId}/mode`, {
+    mode: mode === 'TRACKING' ? 'TRACK' : mode,
+  }),
 };
 
 export default deviceApi;

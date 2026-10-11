@@ -51,7 +51,7 @@ flowchart LR
 | `GET` | `/api/devices/{deviceId}/latest` | Latest telemetry and offline fallback |
 | `GET` | `/api/devices/{deviceId}/telemetry?start=…&end=…` | Analytics and history |
 | `GET` | `/api/devices/{deviceId}/recommendation` | Weather summary and assistant advice |
-| `POST` | `/api/devices/{deviceId}/mode` | `{ "mode": "TRACKING" }` or `{ "mode": "STATIC" }` |
+| `POST` | `/api/devices/{deviceId}/mode` | `{ "mode": "TRACK" }` or `{ "mode": "STATIC" }` |
 
 ## 🎨 Visual system
 
