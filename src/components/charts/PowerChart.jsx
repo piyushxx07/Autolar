@@ -12,7 +12,7 @@ const PowerChart = ({ historyData, loading, error, title = 'Power generation' })
   }));
 
   return (
-    <Card className="chart-card h-100">
+    <Card className="chart-card h-100" data-tour="power-history">
       <Card.Header>
         <div className="chart-card-title"><span className="analysis-card-icon"><Activity size={17} /></span><h5 className="card-title">{title}</h5></div>
       </Card.Header>

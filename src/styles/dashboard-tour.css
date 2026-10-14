@@ -1,0 +1,52 @@
+.dashboard-tour { position: fixed; z-index: 20000; inset: 0; font-family: 'DM Sans', sans-serif; }
+.dashboard-tour-shade { position: fixed; z-index: 0; }
+.dashboard-tour-spotlight { position: fixed; z-index: 1; border: 1px solid rgba(255, 255, 255, .94); border-radius: 15px; box-shadow: 0 0 0 1px rgba(166, 237, 116, .7), 0 0 28px rgba(166, 237, 116, .12); pointer-events: none; transition: top .4s cubic-bezier(.2, .7, .2, 1), left .4s cubic-bezier(.2, .7, .2, 1), width .4s cubic-bezier(.2, .7, .2, 1), height .4s cubic-bezier(.2, .7, .2, 1); }
+.dashboard-tour-popover { position: fixed; z-index: 2; padding: 17px 18px 14px; border: 1px solid #e5ebe3; border-radius: 17px; color: #203328; background: #fff; box-shadow: 0 20px 60px rgba(3, 16, 10, .26); animation: dashboard-tour-enter .3s cubic-bezier(.2, .7, .2, 1) both; }
+.dashboard-tour-popover.is-below::before,
+.dashboard-tour-popover.is-above::before { position: absolute; left: var(--tour-arrow-left); width: 0; height: 0; border-right: 9px solid transparent; border-left: 9px solid transparent; content: ''; transform: translateX(-50%); }
+.dashboard-tour-popover.is-below::before { top: -9px; border-bottom: 9px solid #fff; }
+.dashboard-tour-popover.is-above::before { bottom: -9px; border-top: 9px solid #fff; }
+.dashboard-tour-topline { display: flex; min-height: 20px; align-items: center; justify-content: space-between; color: #738078; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+.dashboard-tour-close { display: grid; width: 28px; height: 28px; margin: -5px -7px 0 0; padding: 0; place-items: center; border: 0; border-radius: 9px; color: #7c887e; background: transparent; transition: color .18s ease, background .18s ease; }
+.dashboard-tour-close:hover { color: #203328; background: #eff5eb; }
+.dashboard-tour-progress { display: flex; gap: 4px; margin: 7px 0 14px; }
+.dashboard-tour-progress i { display: block; flex: 1; height: 3px; border-radius: 99px; background: #e9eee7; transition: background .2s ease; }
+.dashboard-tour-progress i.is-filled { background: #9bdd70; }
+.dashboard-tour-copy { min-height: 71px; animation: dashboard-tour-copy-enter .24s ease both; }
+.dashboard-tour-copy h2 { margin: 0 0 5px; color: #1f3025; font: 750 18px/1.25 Manrope, sans-serif; letter-spacing: -.035em; }
+.dashboard-tour-copy p { margin: 0; color: #6c796f; font-size: 12px; line-height: 1.55; }
+.dashboard-tour-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #edf0eb; }
+.dashboard-tour-skip { padding: 7px 0; border: 0; color: #758078; background: transparent; font: 650 11px 'DM Sans', sans-serif; transition: color .18s ease; }
+.dashboard-tour-skip:hover { color: #263d2e; }
+.dashboard-tour-navigation { display: flex; align-items: center; gap: 9px; }
+.dashboard-tour-navigation > span { color: #8b958d; font-size: 10px; font-weight: 650; }
+.dashboard-tour-previous { display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #e4eae1; border-radius: 10px; color: #536256; background: #fff; transition: background .18s ease, transform .18s ease; }
+.dashboard-tour-previous:hover { background: #f3f8ef; transform: translateX(-1px); }
+.dashboard-tour-next { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; gap: 7px; padding: 0 13px; border: 1px solid #9bdd70; border-radius: 11px; color: #203328; background: #a6ed74; font: 750 11px 'DM Sans', sans-serif; transition: transform .18s ease, background .18s ease; }
+.dashboard-tour-next:hover { background: #b2f18a; transform: translateY(-1px); }
+.dashboard-tour-next:active { transform: scale(.97); }
+.dashboard-tour button:focus-visible { outline: 3px solid #80bf5c; outline-offset: 2px; }
+
+@keyframes dashboard-tour-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes dashboard-tour-copy-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .dashboard-tour-popover { padding: 15px 15px 12px; border-radius: 15px; }
+  .dashboard-tour-copy { min-height: 69px; }
+  .dashboard-tour-copy h2 { font-size: 17px; }
+  .dashboard-tour-copy p { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-tour-spotlight,
+  .dashboard-tour-popover,
+  .dashboard-tour-progress i,
+  .dashboard-tour-copy,
+  .dashboard-tour button { animation: none; transition: none; }
+}

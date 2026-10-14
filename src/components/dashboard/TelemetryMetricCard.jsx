@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-const TelemetryMetricCard = ({ title, value, unit = '', isOnline, icon: Icon }) => (
-  <Card className="h-100">
+const TelemetryMetricCard = ({ title, value, unit = '', isOnline, icon: Icon, tourId }) => (
+  <Card className="h-100" data-tour={tourId}>
     <Card.Body className="telemetry-metric-body">
       <div className="telemetry-metric-heading">
         {Icon && <span className="telemetry-metric-icon"><Icon size={18} strokeWidth={1.9} /></span>}
