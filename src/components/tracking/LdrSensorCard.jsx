@@ -11,7 +11,7 @@ const LdrSensorCard = ({ latestTelemetry, isOnline }) => {
   ];
 
   return (
-    <Card className="ldr-sensor-card h-100" data-tour="ldr-sensor">
+    <Card className="ldr-sensor-card h-100">
       <Card.Body className="ldr-sensor-body">
         <div className="ldr-sensor-heading">
           <span className="ldr-sensor-icon"><Sun size={17} strokeWidth={1.9} /></span>

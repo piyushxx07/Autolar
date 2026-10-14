@@ -10,7 +10,7 @@ const SolarPanelVisual = ({ latestTelemetry, isOnline }) => {
   const tiltAngle = Number(latestTelemetry?.servoTilt || 0);
 
   return (
-    <Card className="tracker-position-card h-100" data-tour="device-position">
+    <Card className="tracker-position-card h-100">
       <Card.Body>
         <div className="tracker-card-heading">
           <div><span className="tracker-card-kicker">Device position</span><h2>{latestTelemetry?.deviceId || 'Tracker'}</h2></div>

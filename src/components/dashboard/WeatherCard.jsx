@@ -12,7 +12,7 @@ const WeatherCard = ({ recommendation, isOnline }) => {
   ].filter(([, value]) => value != null);
 
   return (
-    <Card className="weather-summary-card h-100" data-tour="weather-recommendation">
+    <Card className="weather-summary-card h-100">
       <Card.Body>
         <div className="weather-summary-heading">
           <span className="weather-summary-icon"><CloudSun size={19} /></span>

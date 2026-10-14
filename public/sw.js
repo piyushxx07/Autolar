@@ -1,4 +1,4 @@
-const CACHE_NAME = 'autolar-shell-v3';
+const CACHE_NAME = 'autolar-shell-v4';
 const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/logo.png', '/icons/autolar-192.png', '/icons/autolar-512.png'];
 
 self.addEventListener('install', (event) => {

@@ -10,7 +10,6 @@ import LdrSensorCard from '../components/tracking/LdrSensorCard';
 import PowerChart from '../components/charts/PowerChart';
 import SectionHeader from '../components/common/SectionHeader';
 import TelemetryMetricCard from '../components/dashboard/TelemetryMetricCard';
-import DashboardTour from '../components/dashboard/DashboardTour';
 import { Zap, Gauge, Activity } from 'lucide-react';
 
 const Dashboard = () => {
@@ -37,15 +36,14 @@ const Dashboard = () => {
       </Row>
 
       <Row className="mb-4 dashboard-metrics-row">
-        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Calculated power" value={latestTelemetry?.calculatedPowerW?.toFixed?.(2)} unit="W" isOnline={isOnline} icon={Zap} tourId="calculated-power" /></Col>
-        {latestTelemetry?.netPowerW != null && <Col xs={6} sm={6} lg><TelemetryMetricCard title="Net power" value={Number(latestTelemetry.netPowerW).toFixed(2)} unit="W" isOnline={isOnline} icon={Activity} tourId="net-power" /></Col>}
-        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Panel voltage" value={latestTelemetry?.panelVoltage?.toFixed?.(2)} unit="V" isOnline={isOnline} icon={Gauge} tourId="panel-voltage" /></Col>
-        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Panel current" value={latestTelemetry?.panelCurrentMa != null ? (latestTelemetry.panelCurrentMa / 1000).toFixed(3) : null} unit="A" isOnline={isOnline} icon={Activity} tourId="panel-current" /></Col>
+        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Calculated power" value={latestTelemetry?.calculatedPowerW?.toFixed?.(2)} unit="W" isOnline={isOnline} icon={Zap} /></Col>
+        {latestTelemetry?.netPowerW != null && <Col xs={6} sm={6} lg><TelemetryMetricCard title="Net power" value={Number(latestTelemetry.netPowerW).toFixed(2)} unit="W" isOnline={isOnline} icon={Activity} /></Col>}
+        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Panel voltage" value={latestTelemetry?.panelVoltage?.toFixed?.(2)} unit="V" isOnline={isOnline} icon={Gauge} /></Col>
+        <Col xs={6} sm={6} lg><TelemetryMetricCard title="Panel current" value={latestTelemetry?.panelCurrentMa != null ? (latestTelemetry.panelCurrentMa / 1000).toFixed(3) : null} unit="A" isOnline={isOnline} icon={Activity} /></Col>
         <Col xs={12} sm={6} lg><LdrSensorCard latestTelemetry={latestTelemetry} isOnline={isOnline} /></Col>
       </Row>
 
       <Row className="mb-4 dashboard-history-row"><Col><PowerChart historyData={historyData} loading={historyLoading} error={historyError} /></Col></Row>
-      <DashboardTour />
     </div>
   );
 };
