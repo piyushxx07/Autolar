@@ -4,7 +4,7 @@ import { useDevice } from '../../context/DeviceContext';
 import useLatestTelemetry from '../../hooks/useLatestTelemetry';
 import { formatTimeAgo } from '../../utils/formatters';
 import { Navbar, Dropdown } from 'react-bootstrap';
-import { Bell, LogOut, Gamepad2, Settings } from 'lucide-react';
+import { ArrowRight, Bell, LogOut, Gamepad2, Settings } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Mascot } from 'page-mascot';
 
@@ -42,10 +42,10 @@ const Header = () => {
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu className="account-menu">
-                <Dropdown.Item onClick={() => navigate('/device-control')}><Gamepad2 size={16} />Device control</Dropdown.Item>
-                <Dropdown.Item onClick={() => navigate('/settings')}><Settings size={16} />Settings</Dropdown.Item>
+                <Dropdown.Item onClick={() => navigate('/device-control')}><Gamepad2 size={16} /><span className="account-menu-label">Device control</span><ArrowRight className="account-menu-arrow" size={15} /></Dropdown.Item>
+                <Dropdown.Item onClick={() => navigate('/settings')}><Settings size={16} /><span className="account-menu-label">Settings</span><ArrowRight className="account-menu-arrow" size={15} /></Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={signOut}><LogOut size={16} />Sign out</Dropdown.Item>
+                <Dropdown.Item onClick={signOut}><LogOut size={16} /><span className="account-menu-label">Sign out</span><ArrowRight className="account-menu-arrow" size={15} /></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
