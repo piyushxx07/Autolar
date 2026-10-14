@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { ArrowRight, AtSign, Cloud, Eye, EyeOff, LockKeyhole, ShieldCheck, Sun, UserRound, Zap } from 'lucide-react';
+import { ArrowRight, AtSign, Eye, EyeOff, LockKeyhole, ShieldCheck, UserRound } from 'lucide-react';
 import { Mascot } from 'page-mascot';
 import { useAuth } from '../context/AuthContext';
-import { getApiBaseUrl, setApiBaseUrl } from '../api/axiosClient';
 import '../styles/marketing.css';
 import '../styles/auth.css';
 
@@ -20,9 +19,10 @@ export default function AuthPage({ signup = false }) {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [apiUrl, setApiUrl] = useState(getApiBaseUrl());
+  const [transition, setTransition] = useState(null);
+  const [isLeaving, setIsLeaving] = useState(false);
 
-  if (user) return <Navigate to="/dashboard" replace />;
+  if (user && !busy && !transition) return <Navigate to="/dashboard" replace />;
 
   async function submit(event) {
     event.preventDefault();
@@ -30,60 +30,61 @@ export default function AuthPage({ signup = false }) {
     setBusy(true);
     const form = new FormData(event.currentTarget);
     try {
-      setApiBaseUrl(apiUrl);
-      await authenticate(signup ? 'register' : 'login', {
+      const account = await authenticate(signup ? 'register' : 'login', {
         name: String(form.get('name') || ''),
         email: String(form.get('email') || '').trim(),
         password: String(form.get('password') || ''),
       });
+      const name = (account?.name || String(form.get('name') || form.get('email') || '').trim().split('@')[0] || 'there').slice(0, 36);
+      setIsLeaving(true);
+      await new Promise((resolve) => window.setTimeout(resolve, 360));
+      setTransition({ phase: 'welcome', name });
+      await new Promise((resolve) => window.setTimeout(resolve, 2200));
+      setTransition({ phase: 'loading', name });
+      await new Promise((resolve) => window.setTimeout(resolve, 3250));
       navigate('/dashboard', { replace: true });
     } catch (e) {
       const message = e.response?.data?.message || e.response?.data?.detail;
       setError(message || (e.code === 'ERR_NETWORK' || e.message === 'Network Error'
-        ? 'The browser could not reach the API. Check the address, HTTPS, and backend CORS settings.'
-        : e.message || 'We could not open the workspace. Check the API address and try again.'));
+        ? 'The browser could not reach the service. Check the Cloud API address in Settings.'
+        : e.message || 'We could not open the workspace. Please try again.'));
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <div className="auth-page auth-page-redesign">
-      <aside className="auth-story auth-story-redesign">
-        {brand}
-
-        <div className="auth-story-main">
-          <span className="auth-story-kicker"><i /> SOLAR, MADE CLEARER</span>
-          <h1>See your system<br />in a better light.</h1>
-          <p>Live tracker readings, system health, and cloud recommendations—together in one clear workspace.</p>
-
-          <div className="auth-solar-scene" aria-hidden="true">
-            <span className="auth-scene-halo" />
-            <span className="auth-scene-orbit auth-scene-orbit-one" />
-            <span className="auth-scene-orbit auth-scene-orbit-two" />
-            <span className="auth-scene-sun"><Sun size={38} strokeWidth={1.5} /></span>
-            <div className="auth-scene-panel">{Array.from({ length: 8 }, (_, i) => <i key={i} />)}</div>
-            <span className="auth-scene-neck" />
-            <span className="auth-scene-post" />
-            <span className="auth-scene-foot" />
-            <span className="auth-scene-caption"><Zap size={13} /> CLOUD-CONNECTED SOLAR TRACKING</span>
-          </div>
-
-          <div className="auth-story-note"><ShieldCheck size={17} /> Connect to your live device API</div>
-        </div>
-
-        <small className="auth-story-footer">© 2026 AutoLar <span>·</span> Solar tracking workspace</small>
-      </aside>
-
+    <div className={`auth-page auth-page-redesign${isLeaving || transition ? ' auth-page-authenticating' : ''}`}>
       <main className="auth-panel auth-panel-redesign">
-        <div className="auth-mobile-brand">{brand}<span>DEMO WORKSPACE</span></div>
-        <form className="auth-form auth-form-redesign" onSubmit={submit}>
+        <div className="auth-mobile-brand">{brand}</div>
+        {transition ? (
+          <section className={`auth-success auth-success-${transition.phase} auth-form-redesign`} aria-live="polite" aria-atomic="true" key={transition.phase}>
+            <div className="auth-mascot-halo" aria-hidden="true"><i /><i /><i /></div>
+            <Mascot
+              className="auth-mascot"
+              directions="/mascots/glasses-directions.webp"
+              reactions="/mascots/glasses-reactions.webp"
+              size={72}
+              label="AutoLar helper"
+            />
+            <div className="auth-success-copy">
+              <span className="auth-form-kicker"><i /> {transition.phase === 'welcome' ? 'AUTOLAR' : 'GETTING THINGS READY'}</span>
+              <h2>{transition.phase === 'welcome'
+                ? `${signup ? 'Welcome' : 'Welcome back'}, ${transition.name}`
+                : signup ? 'Setting up your account' : 'Fetching your account'}</h2>
+              <p>{transition.phase === 'welcome'
+                ? 'We are getting your solar workspace ready.'
+                : 'Just a moment while we prepare your dashboard.'}</p>
+            </div>
+            <div className="auth-progress" aria-hidden="true"><span /></div>
+          </section>
+        ) : <form className={`auth-form auth-form-redesign${isLeaving ? ' auth-form-leaving' : ''}`} onSubmit={submit}>
           <div className="auth-mascot-halo" aria-hidden="true"><i /><i /><i /></div>
           <Mascot
             className="auth-mascot"
             directions="/mascots/glasses-directions.webp"
             reactions="/mascots/glasses-reactions.webp"
-            size={104}
+            size={72}
             label="AutoLar helper"
           />
 
@@ -94,15 +95,6 @@ export default function AuthPage({ signup = false }) {
           </div>
 
           <div className="auth-fields">
-            <label className="auth-field">
-              <span className="auth-field-label"><Cloud size={14} /> Cloud API address</span>
-              <span className="auth-input-shell">
-                <Cloud size={16} aria-hidden="true" />
-                <input name="apiUrl" type="text" value={apiUrl} onChange={(event) => setApiUrl(event.target.value)} placeholder="/api or https://api.example.com/api" required />
-              </span>
-              <small>Use /api for this site’s Vercel proxy, or an HTTPS API address.</small>
-            </label>
-
             {signup && <label className="auth-field">
               <span className="auth-field-label"><UserRound size={14} /> Full name</span>
               <span className="auth-input-shell">
@@ -144,7 +136,7 @@ export default function AuthPage({ signup = false }) {
           </div>
 
           <div className="auth-demo-note"><ShieldCheck size={14} /> Demo access only. No account is created on the server.</div>
-        </form>
+        </form>}
         <small className="auth-mobile-footer">© 2026 AutoLar · Solar tracking workspace</small>
       </main>
     </div>
