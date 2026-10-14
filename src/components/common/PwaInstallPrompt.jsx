@@ -56,7 +56,7 @@ const PwaInstallPrompt = () => {
   return (
     <aside className="pwa-install-prompt" role="dialog" aria-label="Install AutoLar">
       <button className="pwa-install-close" type="button" onClick={dismiss} aria-label="Dismiss install prompt"><X size={17} /></button>
-      <img className="pwa-install-icon" src="/icons/autolar-192.png" alt="" />
+      <img className="pwa-install-icon" src="/logo.png" alt="" />
       <div className="pwa-install-copy">
         <strong>Install AutoLar</strong>
         <span>Get quick access to your solar dashboard as an app.</span>
