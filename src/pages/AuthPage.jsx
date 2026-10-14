@@ -39,9 +39,9 @@ export default function AuthPage({ signup = false }) {
       setIsLeaving(true);
       await new Promise((resolve) => window.setTimeout(resolve, 360));
       setTransition({ phase: 'welcome', name });
-      await new Promise((resolve) => window.setTimeout(resolve, 2200));
+      await new Promise((resolve) => window.setTimeout(resolve,6200));
       setTransition({ phase: 'loading', name });
-      await new Promise((resolve) => window.setTimeout(resolve, 3250));
+      await new Promise((resolve) => window.setTimeout(resolve, 7250));
       navigate('/dashboard', { replace: true });
     } catch (e) {
       const message = e.response?.data?.message || e.response?.data?.detail;
