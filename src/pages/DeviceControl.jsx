@@ -3,15 +3,20 @@ import { Alert, Button, Card, Col, Row, Spinner } from 'react-bootstrap';
 import SectionHeader from '../components/common/SectionHeader';
 import { useDevice } from '../context/DeviceContext';
 import useRecommendation from '../hooks/useRecommendation';
+import useLatestTelemetry from '../hooks/useLatestTelemetry';
 import deviceApi from '../api/deviceApi';
 
 const DeviceControl = () => {
   const { deviceId } = useDevice();
-  const { data: recommendation, loading, error } = useRecommendation(deviceId);
+  const { data: recommendation, error } = useRecommendation(deviceId);
+  const { data: latestTelemetry, loading: telemetryLoading } = useLatestTelemetry(deviceId);
   const [mode, setMode] = useState(null);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
-  const currentMode = mode || recommendation?.currentMode || null;
+  const currentMode = mode || latestTelemetry?.operatingMode || recommendation?.currentMode || null;
+  const normalizedMode = String(currentMode || '').toUpperCase();
+  const trackingSelected = ['TRACK', 'TRACKING'].includes(normalizedMode);
+  const staticSelected = normalizedMode === 'STATIC';
 
   const setDeviceMode = async (nextMode) => {
     setSaving(true);
@@ -36,13 +41,13 @@ const DeviceControl = () => {
           <Card className="h-100">
             <Card.Header><h5 className="mb-0">Control Mode</h5></Card.Header>
             <Card.Body>
-              <p>Reported mode: <strong>{loading && !mode ? 'Loading…' : currentMode || 'Not reported by API'}</strong></p>
+              <p>Reported mode: <strong>{telemetryLoading && !currentMode ? 'Loading…' : currentMode || 'Not reported by API'}</strong></p>
               <p className="text-muted">Choose whether the tracker follows the sun or stays fixed. The backend confirms the command after it is sent.</p>
               <div className="d-flex gap-2 flex-wrap">
-                <Button variant={['TRACK', 'TRACKING'].includes(currentMode) ? 'success' : 'outline-success'} disabled={saving} onClick={() => setDeviceMode('TRACKING')}>
+                <Button variant={trackingSelected ? 'success' : 'outline-success'} aria-pressed={trackingSelected} disabled={saving} onClick={() => setDeviceMode('TRACKING')}>
                   {saving ? <Spinner size="sm" className="me-2" /> : null}Set to Tracking
                 </Button>
-                <Button variant={currentMode === 'STATIC' ? 'primary' : 'outline-primary'} disabled={saving} onClick={() => setDeviceMode('STATIC')}>
+                <Button variant={staticSelected ? 'success' : 'outline-success'} aria-pressed={staticSelected} disabled={saving} onClick={() => setDeviceMode('STATIC')}>
                   Set to Static
                 </Button>
               </div>
