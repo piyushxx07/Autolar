@@ -4,8 +4,9 @@ import { useDevice } from '../../context/DeviceContext';
 import useLatestTelemetry from '../../hooks/useLatestTelemetry';
 import { formatTimeAgo } from '../../utils/formatters';
 import { Navbar, Dropdown } from 'react-bootstrap';
-import { Bell, UserRound, LogOut, Gamepad2, Settings } from 'lucide-react';
+import { Bell, LogOut, Gamepad2, Settings } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { Mascot } from 'page-mascot';
 
 const Header = () => {
   const { deviceId } = useDevice();
@@ -31,7 +32,15 @@ const Header = () => {
           <div className="header-icon-actions">
             <Link to="/notifications" className="header-icon-button header-notification-action" aria-label="Notifications"><Bell size={18} /></Link>
             <Dropdown align="end">
-              <Dropdown.Toggle className="header-icon-button header-profile-action" aria-label={`Account menu${user?.name ? ` for ${user.name}` : ''}`}><UserRound size={18} /></Dropdown.Toggle>
+              <Dropdown.Toggle className="header-icon-button header-profile-action" aria-label={`Account menu${user?.name ? ` for ${user.name}` : ''}`}>
+                <Mascot
+                  className="header-account-mascot"
+                  directions="/mascots/glasses-directions.webp"
+                  reactions="/mascots/glasses-reactions.webp"
+                  size={30}
+                  label="Account"
+                />
+              </Dropdown.Toggle>
               <Dropdown.Menu className="account-menu">
                 <Dropdown.Item onClick={() => navigate('/device-control')}><Gamepad2 size={16} />Device control</Dropdown.Item>
                 <Dropdown.Item onClick={() => navigate('/settings')}><Settings size={16} />Settings</Dropdown.Item>

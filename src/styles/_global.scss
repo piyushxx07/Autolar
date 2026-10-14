@@ -774,6 +774,7 @@ h1, h2, h3, h4, h5, h6,
   background-color: #fbfcfa !important;
 }
 .autolar-header .header-icon-button:hover { color: #283a24; background: var(--autolar-mint-soft) !important; }
+.autolar-header .header-account-mascot { display: block; width: 30px !important; height: 30px !important; pointer-events: none; }
 .autolar-header .status-pill.is-online { color: #287346; background: #edf8e8; }
 
 .btn {
