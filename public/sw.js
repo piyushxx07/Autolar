@@ -1,5 +1,5 @@
 const CACHE_NAME = 'autolar-shell-v1';
-const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icons/autolar-192.svg', '/icons/autolar-512.svg'];
+const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icons/autolar-192.png', '/icons/autolar-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));

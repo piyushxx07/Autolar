@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
@@ -56,7 +56,7 @@ const PwaInstallPrompt = () => {
   return (
     <aside className="pwa-install-prompt" role="dialog" aria-label="Install AutoLar">
       <button className="pwa-install-close" type="button" onClick={dismiss} aria-label="Dismiss install prompt"><X size={17} /></button>
-      <span className="pwa-install-icon"><Download size={19} /></span>
+      <img className="pwa-install-icon" src="/icons/autolar-192.png" alt="" />
       <div className="pwa-install-copy">
         <strong>Install AutoLar</strong>
         <span>Get quick access to your solar dashboard as an app.</span>
