@@ -25,7 +25,7 @@ const Header = () => {
         <div className="header-actions">
           <div className="header-status" aria-live="polite">
             {isOnline ? <><span className="status-pill is-online"><span className="status-dot" />Online</span><small className="text-muted d-none d-xl-inline">Updated {formatTimeAgo(latestTelemetry.recordedAt)}</small></> : <span className="status-pill is-offline"><span className="status-dot" />Offline</span>}
-            {latestTelemetry?.operatingMode && <span className="status-pill is-mode"><span className="status-dot" />{latestTelemetry.operatingMode}</span>}
+            {latestTelemetry?.operatingMode && <span className={`status-pill is-mode${String(latestTelemetry.operatingMode).toUpperCase() === 'TRACKING' ? ' is-mode-active' : ''}`}><span className="status-dot" />{latestTelemetry.operatingMode}</span>}
           </div>
 
           <div className="header-icon-actions">

@@ -16,7 +16,7 @@ const SolarPanelVisual = ({ latestTelemetry, isOnline }) => {
           <div><span className="tracker-card-kicker">Device position</span><h2>{latestTelemetry?.deviceId || 'Tracker'}</h2></div>
           <div className="tracker-status-badges">
             <Badge className={`tracker-live-badge${isOnline ? ' online' : ' offline'}`}><span />{isOnline ? 'Online' : 'Offline'}</Badge>
-            {latestTelemetry?.operatingMode && <Badge className="tracker-live-badge tracker-mode-badge"><span />{latestTelemetry.operatingMode}</Badge>}
+            {latestTelemetry?.operatingMode && <Badge className={`tracker-live-badge tracker-mode-badge${String(latestTelemetry.operatingMode).toUpperCase() === 'TRACKING' ? ' is-mode-active' : ''}`}><span />{latestTelemetry.operatingMode}</Badge>}
           </div>
         </div>
         <div className="tracker-position-main">
