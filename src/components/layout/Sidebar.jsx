@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import { LayoutDashboard, BarChart3, BatteryCharging, Bot } from 'lucide-react';
+import TextRevealLabel from '../common/TextRevealLabel';
 
 const Sidebar = () => {
   const menuItems = [
@@ -20,10 +21,11 @@ const Sidebar = () => {
           <NavLink
             key={item.name}
             to={item.path}
+            aria-label={item.name}
             className={({ isActive }) => `nav-link text-decoration-none ${isActive ? 'active-sidebar-item' : ''}`}
           >
             <Icon size={16} className="flex-shrink-0" />
-            <span className="ms-2">{item.name}</span>
+            <span className="ms-2"><TextRevealLabel>{item.name}</TextRevealLabel></span>
           </NavLink>
         );
       })}

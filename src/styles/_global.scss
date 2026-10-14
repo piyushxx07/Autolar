@@ -33,6 +33,12 @@ body {
   min-height: 100vh;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .app { cursor: url('/mascots/autolar-sun-cursor.svg') 12 12, auto; }
+  .app a, .app button, .app [role='button'], .app select { cursor: pointer; }
+  .app input, .app textarea, .app [contenteditable='true'] { cursor: text; }
+}
+
 .app-content {
   display: flex;
   flex: 1;
@@ -686,7 +692,7 @@ a {
 .app-main .btn-primary:hover { background: #35383b !important; }
 .reference-dashboard .chart-card .recharts-cartesian-grid-horizontal line,
 .reference-dashboard .chart-card .recharts-cartesian-grid-vertical line { stroke: #eceef0; }
-.reference-dashboard .chart-card .recharts-line-curve { stroke: #2478ef; }
+.reference-dashboard .chart-card .recharts-line-curve { stroke: #315f40; }
 .reference-dashboard .chart-card .recharts-text { fill: #85898e; }
 .reference-dashboard .chart-card .recharts-legend-item-text { color: #74797e !important; }
 .reference-dashboard .badge.bg-success { color: #128d31 !important; background: #e9f8ed !important; }
@@ -1371,6 +1377,157 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
   }
 }
 
+// Shared dashboard system: soft solar light, crisp white data cards, and clear reading hierarchy.
+.app {
+  background:
+    radial-gradient(ellipse at 8% 5%, rgba(164, 232, 120, .13), transparent 32%),
+    radial-gradient(ellipse at 96% 18%, rgba(210, 229, 199, .34), transparent 31%),
+    #f4f7f1;
+}
+.app-content { background: transparent; }
+.app .autolar-header { border-color: rgba(217, 228, 213, .8); background: rgba(255, 255, 255, .88) !important; box-shadow: 0 8px 30px rgba(40, 68, 43, .055); backdrop-filter: blur(14px); }
+.app .sidebar { border-color: rgba(217, 228, 213, .88); background: rgba(255, 255, 255, .84) !important; box-shadow: 0 12px 34px rgba(40, 68, 43, .055); backdrop-filter: blur(12px); }
+.app .sidebar .nav-link { transition: transform .2s ease, color .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.app .sidebar .nav-link:hover { transform: translateX(2px); }
+.app .sidebar .nav-link.active-sidebar-item { box-shadow: 0 7px 18px rgba(49, 95, 64, .18); }
+.app .app-main {
+  background:
+    radial-gradient(ellipse at 16% 0%, rgba(164, 232, 120, .12), transparent 31%),
+    radial-gradient(ellipse at 100% 12%, rgba(220, 235, 212, .38), transparent 34%),
+    #f4f7f1;
+}
+.app-main .dashboard-content, .app-main .feature-page { width: 100%; max-width: 1560px; margin-inline: auto; }
+.app-main .page-heading { margin-bottom: 1.55rem; padding-bottom: .15rem; border-bottom: 0; }
+.app-main .page-heading h1 { color: #203b2b; font-weight: 750; }
+.app-main .page-heading h1::after { width: 2rem; height: 3px; background: #82bb5e; }
+.app-main .page-heading p { color: #6d796e; }
+.app-main .card {
+  border: 1px solid rgba(222, 232, 217, .9) !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, .96) !important;
+  box-shadow: 0 8px 26px rgba(45, 70, 43, .055), 0 1px 3px rgba(45, 70, 43, .035) !important;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.app-main .card:hover { transform: translateY(-2px); border-color: #d4e4cb !important; box-shadow: 0 14px 32px rgba(45, 70, 43, .085), 0 2px 5px rgba(45, 70, 43, .035) !important; }
+.app-main .card .card-header { color: #263b2b !important; background: transparent !important; }
+.app-main .card .card-header h1,
+.app-main .card .card-header h2,
+.app-main .card .card-header h3,
+.app-main .card .card-header h4,
+.app-main .card .card-header h5,
+.app-main .card .card-header strong { text-decoration: none; }
+.app-main .text-muted { color: #748075 !important; }
+.telemetry-metric-icon, .ldr-sensor-icon, .weather-summary-icon, .analysis-card-icon, .analytics-summary-icon, .energy-summary-icon {
+  box-shadow: 0 4px 12px rgba(89, 131, 69, .08);
+  transition: transform .22s ease, box-shadow .22s ease, background-color .22s ease;
+}
+.app-main .card:hover .telemetry-metric-icon,
+.app-main .card:hover .ldr-sensor-icon,
+.app-main .card:hover .weather-summary-icon,
+.app-main .card:hover .analysis-card-icon,
+.app-main .card:hover .analytics-summary-icon,
+.app-main .card:hover .energy-summary-icon { transform: translateY(-2px) rotate(-4deg); box-shadow: 0 7px 15px rgba(89, 131, 69, .15); }
+.telemetry-metric-body, .ldr-sensor-body { min-height: 158px; padding: 1.2rem !important; }
+.telemetry-metric-heading > span:last-child, .ldr-sensor-heading { color: #6f7c70 !important; letter-spacing: .065em; }
+.telemetry-metric-value strong, .ldr-sensor-reading strong { color: #203b2b; }
+.telemetry-metric-icon, .ldr-sensor-icon, .weather-summary-icon, .analysis-card-icon, .analytics-summary-icon, .energy-summary-icon { color: #4f803e; background: #eff7e9; }
+.tracker-position-card .card-body { min-height: 265px; }
+.tracker-card-heading h2, .tracker-angle strong, .weather-summary-heading strong { color: #203b2b; }
+.tracker-angle, .ldr-sensor-reading, .weather-data-grid > div { border-color: #e9f0e5; background: #f8fbf6; }
+.tracker-solar-art::before { opacity: .23; }
+.weather-chip { color: #486841; background: #f0f6eb; }
+.confidence-chip, .tracker-live-badge.online, .tracker-live-badge.tracker-mode-badge.is-mode-active { color: #2e6b3c !important; background: #eaf5e3 !important; }
+.chart-card .card-header { min-height: 58px; padding: .9rem 1.2rem !important; border-bottom: 1px solid #edf2e9 !important; }
+.chart-card-title, .energy-readings-title { display: flex; align-items: center; gap: .7rem; min-width: 0; }
+.chart-card .card-title { margin: 0; color: #263b2b; font-family: 'Manrope', sans-serif; font-size: .95rem; font-weight: 750; }
+.analysis-card-icon { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; border-radius: 11px; color: #4f803e; background: #eff7e9; }
+.chart-card .chart-body { min-height: 280px; padding: 1rem 1.2rem 1.15rem !important; }
+.chart-card .recharts-cartesian-grid-horizontal line, .chart-card .recharts-cartesian-grid-vertical line { stroke: #e9efe5; }
+.chart-card .recharts-text { fill: #788579; font-family: 'DM Sans', sans-serif; font-size: 11px; }
+.chart-card .recharts-legend-item-text { color: #68776b !important; font-size: .75rem; }
+.chart-card .recharts-default-tooltip { border: 1px solid #e3ebde !important; border-radius: 12px !important; box-shadow: 0 8px 22px rgba(37, 61, 38, .12); }
+.reference-dashboard .chart-card .recharts-line-curve { stroke: #315f40; }
+.analysis-toolbar { gap: .85rem; padding: 1rem; border-color: #e2eadc; border-radius: 18px; background: rgba(255,255,255,.88); box-shadow: 0 8px 22px rgba(45, 70, 43, .045); }
+.analysis-toolbar .form-label { color: #586a58; font-size: .73rem; font-weight: 700; }
+.analysis-toolbar .form-select, .analysis-toolbar .form-control { border-color: #e2eadc; border-radius: 11px; color: #293c2d; background-color: #fbfdf9; }
+.analysis-toolbar .form-select:focus, .analysis-toolbar .form-control:focus { border-color: #8fbb78; box-shadow: 0 0 0 3px rgba(143, 187, 120, .16); }
+.analytics-summary-row > [class*='col'] { display: flex; min-width: 0; }
+.analytics-summary-card { width: 100%; }
+.analytics-summary-icon, .energy-summary-icon { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border-radius: 14px; }
+.energy-readings-card .card-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .85rem 1.15rem !important; border-bottom: 1px solid #edf2e9 !important; }
+.energy-readings-title h5 { margin: 0; color: #263b2b; font-family: 'Manrope', sans-serif; font-size: .92rem; font-weight: 750; }
+.energy-reading-count { color: #708070; font-size: .73rem; }
+.energy-readings-card .card-body { padding: .45rem 1.15rem 1rem !important; }
+.energy-readings-card .table { margin: 0; --bs-table-bg: transparent; --bs-table-striped-bg: #f7faf5; --bs-table-color: #344536; }
+.energy-readings-card .table thead th { padding-top: .75rem; padding-bottom: .75rem; border-bottom-color: #e4ecdf; color: #718071; font-size: .68rem; font-weight: 750; letter-spacing: .045em; text-transform: uppercase; }
+.energy-readings-card .table tbody td { padding-top: .72rem; padding-bottom: .72rem; border-color: #edf2e9; color: #3f5141; font-size: .79rem; }
+.energy-readings-card .table tbody tr:hover td { background: #f1f7ed; }
+.assistant-page .card-header { border-bottom: 1px solid #edf2e9 !important; }
+.assistant-page .card-header > svg { color: #4f803e; }
+.assistant-page .card-body > p { color: #536253; line-height: 1.65; }
+.assistant-page .card-body .text-primary { color: #5f8f49 !important; }
+.assistant-page .card-body .btn-primary { min-height: 42px; padding-inline: 1rem; border: 0 !important; border-radius: 12px !important; color: #203b2b !important; background: #a8ed78 !important; font-weight: 700; box-shadow: 0 5px 14px rgba(95, 143, 73, .14) !important; }
+.assistant-page .card-body .btn-primary:hover { background: #97dc68 !important; transform: translateY(-1px); }
+.feature-empty-state { border-color: #d7e6cd; background: rgba(255,255,255,.82); box-shadow: 0 8px 22px rgba(45, 70, 43, .04); }
+@media (max-width: 767.98px) {
+  .app-main .page-heading { margin-bottom: 1.15rem; }
+  .app-main .card { border-radius: 17px !important; }
+  .analytics-summary-icon, .energy-summary-icon { width: 38px; height: 38px; border-radius: 12px; }
+  .energy-readings-card .card-body { padding-inline: .7rem !important; }
+  .energy-readings-card .table tbody td { font-size: .73rem; }
+}
+@media (hover: none) {
+  .app-main .card:hover { transform: none; }
+  .app-main .card:hover .telemetry-metric-icon,
+  .app-main .card:hover .ldr-sensor-icon,
+  .app-main .card:hover .weather-summary-icon,
+  .app-main .card:hover .analysis-card-icon,
+  .app-main .card:hover .analytics-summary-icon,
+  .app-main .card:hover .energy-summary-icon { transform: none; }
+}
+
+.nav-text-reveal { position: relative; display: inline-grid; overflow: hidden; vertical-align: middle; line-height: inherit; }
+.nav-text-original { grid-area: 1 / 1; display: inline-block; transition: transform .22s cubic-bezier(.87, 0, .13, 1), opacity .18s ease; }
+.nav-text-letters { position: absolute; inset: 0; display: flex; align-items: center; pointer-events: none; }
+.nav-text-letters > span { opacity: 0; transform: translateY(-.7em); transition: transform .22s cubic-bezier(.87, 0, .13, 1), opacity .2s ease; }
+.nav-text-letters > span:nth-child(even) { transform: translateY(.7em); }
+.sidebar .nav-link:hover .nav-text-original,
+.sidebar .nav-link:focus-visible .nav-text-original,
+.mobile-analysis-wrap .mobile-nav-link:hover .nav-text-original,
+.mobile-analysis-wrap .mobile-nav-link:focus-visible .nav-text-original,
+.mobile-nav-popover a:hover .nav-text-original,
+.mobile-nav-popover a:focus-visible .nav-text-original { opacity: 0; transform: translateY(100%); }
+.sidebar .nav-link:hover .nav-text-letters > span,
+.sidebar .nav-link:focus-visible .nav-text-letters > span,
+.mobile-analysis-wrap .mobile-nav-link:hover .nav-text-letters > span,
+.mobile-analysis-wrap .mobile-nav-link:focus-visible .nav-text-letters > span,
+.mobile-nav-popover a:hover .nav-text-letters > span,
+.mobile-nav-popover a:focus-visible .nav-text-letters > span { opacity: 1; transform: translateY(0); }
+.nav-text-letters > span:nth-child(2) { transition-delay: .03s; }
+.nav-text-letters > span:nth-child(3) { transition-delay: .06s; }
+.nav-text-letters > span:nth-child(4) { transition-delay: .09s; }
+.nav-text-letters > span:nth-child(5) { transition-delay: .12s; }
+.nav-text-letters > span:nth-child(6) { transition-delay: .15s; }
+.nav-text-letters > span:nth-child(7) { transition-delay: .18s; }
+.nav-text-letters > span:nth-child(8) { transition-delay: .21s; }
+.nav-text-letters > span:nth-child(9) { transition-delay: .24s; }
+.nav-text-letters > span:nth-child(10) { transition-delay: .27s; }
+.nav-text-letters > span:nth-child(11) { transition-delay: .3s; }
+.nav-text-letters > span:nth-child(12) { transition-delay: .33s; }
+.nav-text-letters > span:nth-child(13) { transition-delay: .36s; }
+.nav-text-letters > span:nth-child(14) { transition-delay: .39s; }
+.nav-text-letters > span:nth-child(15) { transition-delay: .42s; }
+@media (prefers-reduced-motion: reduce) {
+  .nav-text-original, .nav-text-letters > span { transition: none !important; }
+}
+
+@media (max-width: 575.98px) {
+  .device-mode-switch { width: 144px; height: 54px; padding: 5px; }
+  .device-mode-knob { top: 5px; left: 5px; width: 44px; height: 44px; font-size: .68rem; }
+  .device-mode-switch.is-static .device-mode-knob { transform: translateX(90px); }
+  .device-mode-knob .spinner-border { width: 15px; height: 15px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tracker-solar-art.online::before,
   .tracker-solar-art.online .tracker-sun-icon,
@@ -1386,4 +1543,17 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
     animation: none !important;
     transition-duration: .01ms !important;
   }
+}
+
+.analytics-page .card.analytics-summary-card .card-body { display: flex; min-height: 128px; flex-direction: row; align-items: center; justify-content: flex-start; gap: .9rem; padding: 1.1rem !important; text-align: left !important; }
+.analytics-page .analytics-summary-copy { min-width: 0; }
+.analytics-page .analytics-summary-card .card-title { margin: 0 0 .35rem; color: #748075; font-size: .7rem; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
+.analytics-page .analytics-summary-card .analytics-summary-value { display: block; margin: 0; color: #203b2b; font-family: 'Manrope', sans-serif; font-size: clamp(1.15rem, 1.6vw, 1.55rem); font-weight: 750; letter-spacing: -.04em; line-height: 1.15; overflow-wrap: anywhere; }
+.energy-history-page .energy-summary-card .card-body { display: flex; min-height: 114px; align-items: center; gap: .9rem; padding: 1.15rem !important; }
+.energy-history-page .energy-summary-card .summary-label { color: #748075; font-size: .7rem; letter-spacing: .05em; }
+.energy-history-page .energy-summary-card .summary-value { margin-top: .3rem; color: #203b2b; font-size: 1.55rem; }
+.energy-history-page .energy-summary-card .summary-value small { color: #738078; font-size: .78rem; }
+@media (max-width: 767.98px) {
+  .analytics-page .card.analytics-summary-card .card-body { min-height: 112px; gap: .65rem; padding: .85rem !important; }
+  .analytics-page .analytics-summary-icon, .energy-history-page .energy-summary-icon { width: 38px; height: 38px; border-radius: 12px; }
 }

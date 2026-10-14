@@ -8,6 +8,7 @@ import VoltageChart from '../components/charts/VoltageChart';
 import CurrentChart from '../components/charts/CurrentChart';
 import SectionHeader from '../components/common/SectionHeader';
 import { getTelemetryDateRange } from '../utils/telemetryDateRange';
+import { Activity, Gauge, TrendingUp, Zap } from 'lucide-react';
 
 const rangeLabel = (range) => ({ today: 'Today', week: '7 days', days30: 'Last 30 days', lastMonth: 'Last month', month: 'Selected month', custom: 'Custom' }[range] || range);
 
@@ -125,36 +126,36 @@ const Analytics = () => {
       ) : (
         <>
           {/* Summary Cards */}
-          <Row className="mb-4">
+          <Row className="mb-4 analytics-summary-row">
             <Col xs={6} sm={6} xl={3}>
-              <Card className="text-center">
+              <Card className="text-center analytics-summary-card">
                 <Card.Body>
-                  <Card.Title>Average Power</Card.Title>
-                  <Card.Text className="display-5">{formatNumber(summary.avgPower)} W</Card.Text>
+                  <span className="analytics-summary-icon"><Zap size={19} /></span>
+                  <div className="analytics-summary-copy"><Card.Title>Average Power</Card.Title><Card.Text className="display-5 analytics-summary-value">{formatNumber(summary.avgPower)} W</Card.Text></div>
                 </Card.Body>
               </Card>
             </Col>
             <Col xs={6} sm={6} xl={3}>
-              <Card className="text-center">
+              <Card className="text-center analytics-summary-card">
                 <Card.Body>
-                  <Card.Title>Peak Power</Card.Title>
-                  <Card.Text className="display-5">{formatNumber(summary.peakPower)} W</Card.Text>
+                  <span className="analytics-summary-icon"><TrendingUp size={19} /></span>
+                  <div className="analytics-summary-copy"><Card.Title>Peak Power</Card.Title><Card.Text className="display-5 analytics-summary-value">{formatNumber(summary.peakPower)} W</Card.Text></div>
                 </Card.Body>
               </Card>
             </Col>
             <Col xs={6} sm={6} xl={3}>
-              <Card className="text-center">
+              <Card className="text-center analytics-summary-card">
                 <Card.Body>
-                  <Card.Title>Average Voltage</Card.Title>
-                  <Card.Text className="display-5">{formatNumber(summary.avgVoltage)} V</Card.Text>
+                  <span className="analytics-summary-icon"><Gauge size={19} /></span>
+                  <div className="analytics-summary-copy"><Card.Title>Average Voltage</Card.Title><Card.Text className="display-5 analytics-summary-value">{formatNumber(summary.avgVoltage)} V</Card.Text></div>
                 </Card.Body>
               </Card>
             </Col>
             <Col xs={6} sm={6} xl={3}>
-              <Card className="text-center">
+              <Card className="text-center analytics-summary-card">
                 <Card.Body>
-                  <Card.Title>Average Current</Card.Title>
-                  <Card.Text className="display-5">{summary.avgCurrent == null ? '—' : `${formatNumber(summary.avgCurrent * 1000)} mA`}</Card.Text>
+                  <span className="analytics-summary-icon"><Activity size={19} /></span>
+                  <div className="analytics-summary-copy"><Card.Title>Average Current</Card.Title><Card.Text className="display-5 analytics-summary-value">{summary.avgCurrent == null ? '—' : `${formatNumber(summary.avgCurrent * 1000)} mA`}</Card.Text></div>
                 </Card.Body>
               </Card>
             </Col>

@@ -6,6 +6,7 @@ import { Col, Row, Card, Table, FormControl, Form } from "react-bootstrap";
 import PowerChart from '../components/charts/PowerChart';
 import SectionHeader from '../components/common/SectionHeader';
 import { getTelemetryDateRange } from '../utils/telemetryDateRange';
+import { Table2, TrendingUp, Zap } from 'lucide-react';
 
 const EnergyHistory = () => {
   const { deviceId } = useDevice();
@@ -95,10 +96,10 @@ const EnergyHistory = () => {
         <>
           <Row className="mb-3 energy-summary">
             <Col xs={6} lg={6}>
-              <Card><Card.Body><span className="summary-label">Average power</span><strong className="summary-value">{formatNumber(averagePower)} <small>W</small></strong></Card.Body></Card>
+              <Card className="energy-summary-card"><Card.Body><span className="energy-summary-icon"><Zap size={19} /></span><div><span className="summary-label">Average power</span><strong className="summary-value">{formatNumber(averagePower)} <small>W</small></strong></div></Card.Body></Card>
             </Col>
             <Col xs={6} lg={6}>
-              <Card><Card.Body><span className="summary-label">Peak power</span><strong className="summary-value">{formatNumber(peakPower)} <small>W</small></strong></Card.Body></Card>
+              <Card className="energy-summary-card"><Card.Body><span className="energy-summary-icon"><TrendingUp size={19} /></span><div><span className="summary-label">Peak power</span><strong className="summary-value">{formatNumber(peakPower)} <small>W</small></strong></div></Card.Body></Card>
             </Col>
           </Row>
           <div className="mb-4 energy-trend-section">
@@ -106,8 +107,9 @@ const EnergyHistory = () => {
             <PowerChart historyData={historyData} loading={false} error={null} title="Power readings over time" />
           </div>
 
-          <div className="mb-4">
-            <h5>Readings</h5>
+          <Card className="mb-4 energy-readings-card">
+            <Card.Header><div className="energy-readings-title"><span className="analysis-card-icon"><Table2 size={17} /></span><h5>Recent readings</h5></div><span className="energy-reading-count">{historyData.length} readings</span></Card.Header>
+            <Card.Body>
             <div className="table-responsive">
             <Table className="table table-sm">
               <thead>
@@ -132,7 +134,8 @@ const EnergyHistory = () => {
               </tbody>
             </Table>
             </div>
-          </div>
+            </Card.Body>
+          </Card>
 
         </>
       )}

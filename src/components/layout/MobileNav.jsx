@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import { Activity, BarChart3, BatteryCharging, Bell, Bot, Gamepad2, Home, Menu, Settings, LogOut } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import TextRevealLabel from '../common/TextRevealLabel';
 
 const MobileNav = () => {
   const [analysisOpen, setAnalysisOpen] = useState(false);
@@ -40,12 +41,12 @@ const MobileNav = () => {
         <Home size={20} /><span>Home</span>
       </NavLink>
       <div className="mobile-analysis-wrap" ref={analysisRef}>
-        <button type="button" className={`mobile-nav-link${analysisOpen || isAnalysisPage ? ' active' : ''}`} aria-expanded={analysisOpen} aria-haspopup="menu" onClick={() => setAnalysisOpen((open) => !open)}>
-          <Activity size={20} /><span>Analysis</span>
+        <button type="button" className={`mobile-nav-link${analysisOpen || isAnalysisPage ? ' active' : ''}`} aria-label="Analysis" aria-expanded={analysisOpen} aria-haspopup="menu" onClick={() => setAnalysisOpen((open) => !open)}>
+          <Activity size={20} /><TextRevealLabel>Analysis</TextRevealLabel>
         </button>
         {analysisOpen && <div className="mobile-nav-popover" role="menu">
-          <Link role="menuitem" to="/analytics" onClick={() => setAnalysisOpen(false)}><BarChart3 size={17} />Analytics</Link>
-          <Link role="menuitem" to="/energy-history" onClick={() => setAnalysisOpen(false)}><BatteryCharging size={17} />Energy history</Link>
+          <Link role="menuitem" aria-label="Analytics" to="/analytics" onClick={() => setAnalysisOpen(false)}><BarChart3 size={17} /><TextRevealLabel>Analytics</TextRevealLabel></Link>
+          <Link role="menuitem" aria-label="Energy history" to="/energy-history" onClick={() => setAnalysisOpen(false)}><BatteryCharging size={17} /><TextRevealLabel>Energy history</TextRevealLabel></Link>
         </div>}
       </div>
       <NavLink to="/assistant" className={({ isActive }) => `mobile-nav-link mobile-nav-ai${isActive ? ' active' : ''}`}>

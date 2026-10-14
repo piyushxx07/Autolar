@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Spinner } from 'react-bootstrap';
+import { Activity } from 'lucide-react';
 
 const PowerChart = ({ historyData, loading, error, title = 'Power generation' }) => {
   // Recharts uses Date objects for the time axis.
@@ -13,7 +14,7 @@ const PowerChart = ({ historyData, loading, error, title = 'Power generation' })
   return (
     <Card className="chart-card h-100">
       <Card.Header>
-        <h5 className="card-title">{title}</h5>
+        <div className="chart-card-title"><span className="analysis-card-icon"><Activity size={17} /></span><h5 className="card-title">{title}</h5></div>
       </Card.Header>
       <Card.Body className="chart-body">
         {loading ? <div className="text-center"><Spinner animation="border" role="status"><span className="visually-hidden">Loading power history...</span></Spinner></div>
@@ -30,7 +31,7 @@ const PowerChart = ({ historyData, loading, error, title = 'Power generation' })
                   <YAxis tickLine={false} axisLine={false} width={42} />
                   <Tooltip />
                   <Legend verticalAlign="top" height={30} />
-                  <Line type="monotone" dataKey="power" name="Power (W)" stroke="#3b82f6" strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="power" name="Power (W)" stroke="#315f40" strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
                 </LineChart>
               </ResponsiveContainer>}
       </Card.Body>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Spinner } from 'react-bootstrap';
+import { Activity } from 'lucide-react';
 
 const CurrentChart = ({ historyData, loading, error, title = 'Panel current' }) => {
   if (loading) {
@@ -45,7 +46,7 @@ const CurrentChart = ({ historyData, loading, error, title = 'Panel current' }) 
   return (
     <Card className="chart-card h-100">
       <Card.Header>
-        <h5 className="card-title">{title}</h5>
+        <div className="chart-card-title"><span className="analysis-card-icon"><Activity size={17} /></span><h5 className="card-title">{title}</h5></div>
       </Card.Header>
       <Card.Body className="chart-body">
         <ResponsiveContainer width="100%" height="100%">
@@ -59,7 +60,7 @@ const CurrentChart = ({ historyData, loading, error, title = 'Panel current' }) 
             <YAxis tickLine={false} axisLine={false} width={42} />
             <Tooltip />
             <Legend verticalAlign="top" height={30} />
-            <Line type="monotone" dataKey="current" name="Current (mA)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+            <Line type="monotone" dataKey="current" name="Current (mA)" stroke="#9bcf6b" strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
       </Card.Body>

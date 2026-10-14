@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Activity, Cpu, Radio, Sun } from 'lucide-react';
-import solarFarmImage from '../assets/solar-farm.png';
+import solarFarmImage from '../assets/solar-farm.jpg';
 import '../styles/marketing.css';
 
 const services = [
@@ -9,6 +9,18 @@ const services = [
   { icon: Radio, title: 'Light-sensing Control', text: 'Four LDR sensors help the ESP32 find the brightest direction.' },
   { icon: Activity, title: 'Solar Monitoring', text: 'See panel power, voltage, current, and tracker readings together.' },
 ];
+
+function GetStartedLink({ className = '' }) {
+  return (
+    <Link className={`${className} animated-cta`} to="/signup" aria-label="Get started">
+      <span className="animated-cta-original" aria-hidden="true">Get started <ArrowRight size={14} /></span>
+      <span className="animated-cta-letters" aria-hidden="true">
+        {'Get started'.split('').map((letter, index) => <span key={`${letter}-${index}`}>{letter === ' ' ? '\u00a0' : letter}</span>)}
+        <ArrowRight size={14} />
+      </span>
+    </Link>
+  );
+}
 
 export default function Marketing() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,15 +42,15 @@ export default function Marketing() {
             <Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="" /><span>AutoLar</span></Link>
             <nav className="site-nav" aria-label="Main navigation">
               <a href="#home">Home</a><a href="#services">Product</a><a href="#impact">Purpose</a><a href="#about">About Us</a>
-              <Link className="site-nav-cta" to="/signup">Get started <ArrowRight size={14} /></Link>
+              <GetStartedLink className="site-nav-cta" />
             </nav>
-            <div className="site-header-actions"><Link className="site-signin" to="/login">Sign in</Link><Link className="contact-button" to="/signup">Get started <ArrowRight size={14} /></Link></div>
+            <div className="site-header-actions"><Link className="site-signin" to="/login">Sign in</Link><GetStartedLink className="contact-button" /></div>
           </header>
 
           <div className="hero-copy">
             <h1>Harness Clean<br /><span>Solar Energy</span></h1>
             <p>Follow the sun with a solar panel that moves on two axes. AutoLar brings tracking and system readings into one clear view.</p>
-            <Link className="hero-cta" to="/signup">Get started <ArrowRight size={15} /></Link>
+            <GetStartedLink className="hero-cta" />
           </div>
 
           <article className="hero-project-card">
