@@ -404,8 +404,8 @@ a {
   }
 
   .brand-mark {
-    width: 40px;
-    height: 40px;
+    width: 54px;
+    height: 54px;
     display: grid;
     place-items: center;
     color: $autolar-blue;
@@ -565,7 +565,7 @@ a {
   .app .app-main { padding: 1.35rem 1rem 1.75rem; }
   .autolar-header { min-height: 64px; padding: 0.55rem 0.9rem; }
   .autolar-header .header-inner { gap: 0.6rem; }
-  .autolar-header .brand-mark { width: 36px; height: 36px; border-radius: 12px; }
+  .autolar-header .brand-mark { width: 46px; height: 46px; border-radius: 0; }
   .autolar-header .brand-copy strong { font-size: 0.98rem; }
   .autolar-header .brand-copy small { font-size: 0.61rem; }
   .autolar-header .header-actions { gap: 0.55rem; }
@@ -620,7 +620,7 @@ a {
 @media (max-width: 360px) {
   .autolar-header { padding-right: 0.55rem; padding-left: 0.55rem; }
   .autolar-header .header-inner { gap: 0.25rem; }
-  .autolar-header .brand-mark { width: 32px; height: 32px; }
+  .autolar-header .brand-mark { width: 42px; height: 42px; }
   .autolar-header .header-actions { gap: 0.25rem; }
   .autolar-header .device-select { width: 88px; min-width: 88px; }
   .autolar-header .header-icon-actions { padding-left: 0.2rem; }
@@ -738,10 +738,9 @@ h1, h2, h3, h4, h5, h6,
 
 .autolar-header .navbar-brand::after { background-color: #a4e878; }
 .autolar-header .brand-mark {
-  color: #1c291f;
-  border-color: #dcebd5;
-  background: linear-gradient(145deg, #c5f49f, #a4e878);
-  border-radius: 13px;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
 }
 .autolar-header .header-nav { gap: 0.22rem; }
 .autolar-header .header-nav-link {
@@ -1291,7 +1290,7 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
   .mobile-nav-link { font-size: .61rem; }
   .mobile-nav-link > svg { width: 19px; height: 19px; }
   .mobile-ai-icon { width: 45px; height: 45px; }
-  .autolar-header .brand-mark { width: 31px; height: 31px; }
+  .autolar-header .brand-mark { width: 40px; height: 40px; }
   .autolar-header .brand-copy strong { font-size: .9rem; }
   .autolar-header .device-select { width: 92px; min-width: 92px; font-size: .68rem; }
   .autolar-header .device-id-link { max-width: 104px; }
@@ -1314,7 +1313,8 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
 }
 
 // Quiet, shared motion language for route changes and data views.
-.autolar-logo-mark { display: block; width: 100%; height: 100%; overflow: visible; }
+.autolar-logo-mark { display: block; width: 100%; height: 100%; overflow: visible; object-fit: contain; }
+.auth-brand-logo { display: block; width: 54px; height: 54px; object-fit: contain; }
 .brand-mark,
 .auth-brand-icon,
 .preview-logo { overflow: visible; }
