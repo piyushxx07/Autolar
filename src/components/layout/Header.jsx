@@ -23,10 +23,6 @@ const Header = () => {
         </Link>
 
         <div className="header-actions">
-          <Link to="/settings" className="header-device device-id-link" aria-label={`Configure device ${deviceId} in settings`}>
-            <span className="text-muted small fw-medium">Device</span><strong>{deviceId}</strong>
-          </Link>
-
           <div className="header-status" aria-live="polite">
             {isOnline ? <><span className="status-pill is-online"><span className="status-dot" />Online</span><small className="text-muted d-none d-xl-inline">Updated {formatTimeAgo(latestTelemetry.recordedAt)}</small></> : <span className="status-pill is-offline"><span className="status-dot" />Offline</span>}
           </div>
