@@ -15,6 +15,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Marketing from './pages/Marketing';
 import AuthPage from './pages/AuthPage';
 import Assistant from './pages/Assistant';
+import PwaInstallPrompt from './components/common/PwaInstallPrompt';
 import './styles/main.scss'; // Already imported in main.jsx, but we can also import here if needed
 
 function ProtectedLayout() {
@@ -28,6 +29,7 @@ function App() {
     <AuthProvider>
     <DeviceProvider>
       <BrowserRouter>
+              <PwaInstallPrompt />
               <Routes>
                 <Route path="/" element={<Marketing />} />
                 <Route path="/about" element={<Marketing page="about" />} />

@@ -1084,6 +1084,16 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
 .telemetry-not-reported { color: #798179; font-size: .8rem; font-weight: 550; }
 .device-id-link { max-width: min(34vw, 330px); text-decoration: none; }
 .device-id-link strong { overflow: hidden; color: #344234; font-size: .8rem; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.pwa-install-prompt { position: fixed; z-index: 1200; right: 1.25rem; bottom: 1.25rem; display: flex; width: min(430px, calc(100vw - 2rem)); align-items: center; gap: .8rem; padding: 1rem 2.6rem 1rem 1rem; border: 1px solid #dce8d5; border-radius: 18px; background: #fff; box-shadow: 0 16px 48px rgba(34, 55, 38, .2); }
+.pwa-install-icon { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 1px solid #d8ebcc; border-radius: 13px; color: #286e40; background: #e8f6df; }
+.pwa-install-copy { display: grid; min-width: 0; gap: .2rem; flex: 1 1 auto; }
+.pwa-install-copy strong { color: #263126; font-size: .9rem; }
+.pwa-install-copy span, .pwa-install-copy small { color: #6f796f; font-size: .73rem; line-height: 1.4; }
+.pwa-install-copy small { margin-top: .25rem; color: #286e40; }
+.pwa-install-action { flex: 0 0 auto; padding: .5rem .75rem; border: 0; border-radius: 10px; color: #fff; background: #286e40; font-size: .75rem; font-weight: 700; }
+.pwa-install-action:hover { background: #205b34; }
+.pwa-install-close { position: absolute; top: .45rem; right: .45rem; display: grid; width: 28px; height: 28px; place-items: center; border: 0; border-radius: 50%; color: #758075; background: transparent; }
+.pwa-install-close:hover { color: #263126; background: #f1f4ef; }
 .notification-empty-state { padding: 2rem 1rem !important; border: 1px dashed #d5dfd2 !important; border-radius: 14px; color: #778078; background: #fbfcfa; text-align: center; font-size: .85rem; }
 .telemetry-metric-body { display: flex; min-height: 150px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: .85rem; padding: 1.15rem !important; }
 .telemetry-metric-heading { display: flex; align-items: center; gap: .65rem; }
@@ -1178,6 +1188,9 @@ body { background: var(--autolar-canvas); font-family: 'DM Sans', system-ui, san
 }
 
 @media (max-width: 991.98px) {
+  .pwa-install-prompt { right: .75rem; bottom: calc(78px + env(safe-area-inset-bottom)); left: .75rem; width: auto; gap: .6rem; padding: .8rem 2.4rem .8rem .75rem; }
+  .pwa-install-icon { width: 38px; height: 38px; }
+  .pwa-install-action { padding: .48rem .62rem; }
   .app .autolar-header { width: calc(100% - 24px); }
   .app-content { width: 100%; }
   .app .sidebar { display: none !important; }
