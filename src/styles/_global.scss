@@ -429,6 +429,7 @@ a {
   .status-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.38rem 0.7rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
   .status-pill.is-online { color: #087a58; background: #e9f8f1; }
   .status-pill.is-offline { color: #b42318; background: #fff0ef; }
+  .status-pill.is-mode { color: #286e40; background: #e8f6df; }
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
   .header-weather { gap: 0.55rem; padding-left: 1rem; border-left: 1px solid $autolar-border; color: $autolar-purple; }
   .header-weather span { display: grid; gap: 0.08rem; color: $autolar-gray; font-size: 0.74rem; line-height: 1.15; }
