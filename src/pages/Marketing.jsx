@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Activity, Cpu, Radio, Sun } from 'lucide-react';
 import solarFarmImage from '../assets/solar-farm.png';
@@ -11,29 +11,37 @@ const services = [
 ];
 
 export default function Marketing() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setScrolled(window.scrollY > 80);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    return () => window.removeEventListener('scroll', updateHeader);
+  }, []);
+
   return (
     <div className="marketing-site">
       <main>
         <section className="site-hero" id="home" aria-label="AutoLar dual-axis solar tracking">
           <img className="hero-background" src={solarFarmImage} alt="A clear view across a solar farm in the morning sun" />
           <div className="hero-shade" />
-          <header className="site-header">
+          <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
             <Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="" /><span>AutoLar</span></Link>
             <nav className="site-nav" aria-label="Main navigation">
               <a href="#home">Home</a><a href="#services">Product</a><a href="#impact">Purpose</a><a href="#about">About Us</a>
+              <Link className="site-nav-cta" to="/signup">Get started <ArrowRight size={14} /></Link>
             </nav>
             <div className="site-header-actions"><Link className="site-signin" to="/login">Sign in</Link><Link className="contact-button" to="/signup">Get started <ArrowRight size={14} /></Link></div>
           </header>
 
           <div className="hero-copy">
-            <span className="hero-kicker"><i /> DUAL-AXIS SOLAR TRACKING</span>
             <h1>Harness Clean<br /><span>Solar Energy</span></h1>
             <p>Follow the sun with a solar panel that moves on two axes. AutoLar brings tracking and system readings into one clear view.</p>
             <Link className="hero-cta" to="/signup">Get started <ArrowRight size={15} /></Link>
           </div>
 
           <article className="hero-project-card">
-            <div className="project-image-wrap"><img src={solarFarmImage} alt="Solar panels arranged to capture sunlight" /></div>
             <div className="project-card-copy"><span className="project-kicker"><Cpu size={13} /> AUTOLAR TRACKER</span><h2>Smarter solar, following the light.</h2><p>Light sensors guide the panel throughout the day.</p><a href="#services">Explore the system <ArrowRight size={13} /></a></div>
           </article>
           <div className="hero-bottom-line"><span /> SOLAR THAT MOVES WITH THE SUN</div>

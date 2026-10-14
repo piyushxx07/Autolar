@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Button, Card, Col, Row, Spinner } from 'react-bootstrap';
+import { Alert, Card, Col, Row, Spinner } from 'react-bootstrap';
 import SectionHeader from '../components/common/SectionHeader';
 import { useDevice } from '../context/DeviceContext';
 import useRecommendation from '../hooks/useRecommendation';
@@ -16,7 +16,6 @@ const DeviceControl = () => {
   const currentMode = mode || latestTelemetry?.operatingMode || recommendation?.currentMode || null;
   const normalizedMode = String(currentMode || '').toUpperCase();
   const trackingSelected = ['TRACK', 'TRACKING'].includes(normalizedMode);
-  const staticSelected = normalizedMode === 'STATIC';
 
   const setDeviceMode = async (nextMode) => {
     setSaving(true);
@@ -43,13 +42,18 @@ const DeviceControl = () => {
             <Card.Body>
               <p>Reported mode: <strong>{telemetryLoading && !currentMode ? 'Loading…' : currentMode || 'Not reported by API'}</strong></p>
               <p className="text-muted">Choose whether the tracker follows the sun or stays fixed. The backend confirms the command after it is sent.</p>
-              <div className="d-flex gap-2 flex-wrap">
-                <Button variant={trackingSelected ? 'success' : 'outline-success'} aria-pressed={trackingSelected} disabled={saving} onClick={() => setDeviceMode('TRACKING')}>
-                  {saving ? <Spinner size="sm" className="me-2" /> : null}Set to Tracking
-                </Button>
-                <Button variant={staticSelected ? 'success' : 'outline-success'} aria-pressed={staticSelected} disabled={saving} onClick={() => setDeviceMode('STATIC')}>
-                  Set to Static
-                </Button>
+              <div className="device-mode-switch-wrap">
+                <button
+                  type="button"
+                  role="switch"
+                  className={`device-mode-switch${trackingSelected ? ' is-tracking' : ' is-static'}`}
+                  aria-label="Tracker mode"
+                  aria-checked={trackingSelected}
+                  disabled={saving}
+                  onClick={() => setDeviceMode(trackingSelected ? 'STATIC' : 'TRACKING')}
+                >
+                  <span className="device-mode-knob">{saving ? <Spinner animation="border" size="sm" /> : trackingSelected ? 'Track' : 'Static'}</span>
+                </button>
               </div>
             </Card.Body>
           </Card>
