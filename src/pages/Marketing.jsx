@@ -18,7 +18,7 @@ export default function Marketing() {
           <img className="hero-background" src={solarFarmImage} alt="A clear view across a solar farm in the morning sun" />
           <div className="hero-shade" />
           <header className="site-header">
-            <Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="AutoLar" /></Link>
+            <Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="" /><span>AutoLar</span></Link>
             <nav className="site-nav" aria-label="Main navigation">
               <a href="#home">Home</a><a href="#services">Product</a><a href="#impact">Purpose</a><a href="#about">About Us</a>
             </nav>
@@ -65,7 +65,7 @@ export default function Marketing() {
           <span className="about-sun"><Sun size={22} /></span><div><span className="about-kicker">ABOUT AUTOLAR</span><h2>A solar tracker with a clear purpose.</h2><p>Move the panel toward the brightest light, measure its output, and make the system easy to understand.</p></div><Link to="/signup" className="about-link">Meet AutoLar <ArrowRight size={15} /></Link>
         </section>
       </main>
-      <footer className="site-footer"><Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="AutoLar" /></Link><span>Dual-axis solar tracking</span><span>{'\u00a9'} {new Date().getFullYear()} AutoLar</span></footer>
+      <footer className="site-footer"><Link className="site-brand" to="/" aria-label="AutoLar home"><img className="site-brand-logo" src="/logo.png" alt="" /><span>AutoLar</span></Link><span>Dual-axis solar tracking</span><span>{'\u00a9'} {new Date().getFullYear()} AutoLar</span></footer>
     </div>
   );
 }

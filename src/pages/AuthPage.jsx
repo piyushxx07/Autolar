@@ -10,6 +10,7 @@ import '../styles/auth.css';
 const brand = (
   <Link className="auth-brand" to="/" aria-label="AutoLar home">
     <img className="auth-brand-logo" src="/logo.png" alt="AutoLar" />
+    <span>AutoLar</span>
   </Link>
 );
 

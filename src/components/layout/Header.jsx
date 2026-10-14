@@ -19,7 +19,7 @@ const Header = () => {
       <div className="header-inner">
         <Link to="/dashboard" className="navbar-brand autolar-brand" aria-label="AutoLar dashboard">
           <span className="brand-mark" aria-hidden="true"><img className="autolar-logo-mark" src="/logo.png" alt="" /></span>
-          <span className="brand-copy"><small>Solar Tracking System</small></span>
+          <span className="brand-copy"><strong>AutoLar</strong><small>Solar Tracking System</small></span>
         </Link>
 
         <div className="header-actions">
