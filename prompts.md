@@ -1,1 +1,0 @@
-what is this in analytics in that from and two user can select but its not good looing only two boox so fix this also and the voltage and current they are like see your self its not fully visible also when I click custom the last month data automatically came why it options should be today 7 days last 30 days then last month then select month then custom ok
