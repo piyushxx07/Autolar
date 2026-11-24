@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center"> 
   <img src="Autolar/frontend/public/autolar-logo-mark.svg" width="92" height="92" alt="Animated AutoLar sun and solar panel mark" />
   <h1>AutoLar</h1>
   <strong>Solar tracking · Made visible</strong>
@@ -15,7 +15,7 @@
 
 | | |
 |---|---|
-| **Purpose** | Monitor and control a dual-axis solar tracker |
+| **Purpose** | Monitor  and control a dual-axis solar tracker |
 | **Device** | ESP32 · LDR array · servo pan/tilt · INA219 |
 | **Cloud** | Spring Boot REST API · AWS EC2 · AWS RDS |
 | **Client** | Responsive React dashboard · desktop + mobile |
